@@ -1,5 +1,5 @@
 const { existsSync, lstatSync } = require('fs');
-const { dirname, resolve } = require('path');
+const { dirname, resolve, posix } = require('path');
 
 module.exports = {
     configs: {
@@ -34,7 +34,8 @@ module.exports = {
                     node,
                     message: 'Directory paths must end with index.js',
                     fix(fixer) {
-                        return fixer.replaceText(node.source, `'${node.source.value}/index.js'`);
+                        const prefix = node.source.value.startsWith('./') ? './' : '';
+                        return fixer.replaceText(node.source, `'${prefix}${posix.join(node.source.value, 'index.js')}'`);
                     },
                 });
             }
