@@ -13,9 +13,9 @@ module.exports = {
     },
     rules: {
         'require-extensions': rule((context, node, path) => {
-            const ext = extname(context.getFilename());
+            const fileExt = extname(context.getFilename());
 
-            if (!existsSync(path) || existsSync(`${path}${ext}`)) {
+            if (!existsSync(path) || existsSync(`${path}${fileExt}`)) {
                 let fix;
                 if (!node.source.value.includes('?')) {
                     fix = (fixer) => {
