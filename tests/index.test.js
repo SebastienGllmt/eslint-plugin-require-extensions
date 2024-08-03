@@ -22,6 +22,21 @@ describe('eslint-plugin-require-extensions', () => {
                 code: "import batcave from '@wayne/foundation'",
                 filename,
             },
+            {
+                name: 'import jsx',
+                code: "import test from './joker.jsx'",
+                filename,
+            },
+            {
+                name: 'import cjs',
+                code: "import test from './joker.cjs'",
+                filename,
+            },
+            {
+                name: 'import mjs',
+                code: "import test from './joker.mjs'",
+                filename,
+            },
         ],
         invalid: [
             {

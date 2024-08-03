@@ -60,7 +60,9 @@ function rule(check) {
                 const source = node.source;
                 if (!source) return;
                 const value = source.value.replace(/\?.*$/, '');
-                if (!value || !value.startsWith('.') || value.endsWith('.js')) return;
+
+                const validExtensions = ['.js', '.jsx', '.cjs', '.mjs'];
+                if (!value || !value.startsWith('.') || validExtensions.some(ext => value.endsWith(ext))) return;
 
                 check(context, node, resolve(dirname(context.getFilename()), value));
             }
